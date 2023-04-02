@@ -1,0 +1,23 @@
+<div class="col-5">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Weather in {{ city.name }} for {{ weatherDetail.dt | date: 'MMM d' }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="flex justify-content-between flex-column">
+        <div class="col">Temperature min: {{ weatherDetail.temp.min}} C</div>
+        <div class="col">Temperature max: {{ weatherDetail.temp.max}} C</div>
+        <div class="col">Humidity: {{ (weatherDetail.humidity | percent)}} C</div>
+      <hr/>
+      <div class="flex">
+        <div class="col">Humidity: {{ weatherDescription }}</div>
+      </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions *ngIf="showActionButtons">
+      <button mat-button (click)="addFavourite()">
+        <mat-icon fontIcon="favorite"></mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

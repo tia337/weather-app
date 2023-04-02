@@ -19,6 +19,13 @@
     "target": "ES2022",
     "module": "ES2022",
     "useDefineForClassFields": false,
+    "strictPropertyInitialization": false,
+    "paths": {
+      "@environment": ["src/environments/environment.ts"],
+      "@core/*": ["src/app/core/*"],
+      "@features/*": ["src/app/features/*"],
+      "@shared/*": ["src/app/shared/*"]
+    },
     "lib": [
       "ES2022",
       "dom"

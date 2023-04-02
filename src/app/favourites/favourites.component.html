@@ -1,0 +1,16 @@
+<div *ngIf="favourites$ | async as favourites; else noData" class="grid justify-content-center mt-4">
+  <ng-container *ngFor="let item of favourites">
+    <div class="col-6 mt-4">
+      <wapp-weather-card
+        [city]="item.city"
+        [weatherDetail]="item.list[0]"
+      ></wapp-weather-card>
+    </div>
+  </ng-container>
+</div>
+
+
+<ng-template #noData>
+  <div class="h-full flex justify-content-center align-items-center"> No Favourites</div>
+</ng-template>
+

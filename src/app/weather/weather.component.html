@@ -1,0 +1,25 @@
+<div class="grid justify-content-center mt-4">
+  <div class="col-6">
+    <wapp-autocomplete (optionSelected)="loadWeatherData($event)"></wapp-autocomplete>
+  </div>
+
+  <ng-container *ngIf="weatherData$ | async as wData">
+    <div class="col-6 mt-4">
+      <wapp-weather-card
+        [city]="wData.city"
+        [weatherDetail]="wData.list[0]"
+        (addedFavourite)="addToFavourites(wData)"
+      ></wapp-weather-card>
+    </div>
+    <div class="flex mt-4">
+      <div class="col-2" *ngFor="let item of wData.list.slice(1, 6)">
+        <wapp-weather-card
+          [city]="wData.city"
+          [weatherDetail]="item"
+          [showActionButtons]="false"
+        ></wapp-weather-card>
+      </div>
+    </div>
+  </ng-container>
+
+</div>

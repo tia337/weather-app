@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { AutocompleteSuggestion, CurrentWeather, WeatherForecast } from '@core/models';
 import { environment } from '@environment';
 
@@ -18,9 +18,5 @@ export class WeatherService {
 
   getForecast(lat: number, lon: number, daysCount = 6): Observable<WeatherForecast>{
     return this.http.get<WeatherForecast>(`${this.apiUrl}/data/2.5/forecast/daily?lat=${lat}&lon=${lon}&cnt=${daysCount}`);
-  }
-
-  getCurrentWeather(lat: number, lon: number): Observable<CurrentWeather> {
-    return this.http.get<CurrentWeather>(`${this.apiUrl}/data/2.5/weather?lat=${lat}&lon=${lon}`);
   }
 }

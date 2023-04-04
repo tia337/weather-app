@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { WeatherService } from '@core/api';
-import { AutocompleteSuggestion, WeatherForecast } from '@core/models';
+import { AutocompleteSuggestion, WeatherForecast, CurrentWeather } from '@core/models';
 import { FavouritesService } from '@core/services';
 import { Observable } from 'rxjs';
 
@@ -15,6 +15,7 @@ export class WeatherComponent {
   private readonly favouritesService = inject(FavouritesService);
 
   weatherData$: Observable<WeatherForecast>;
+  currentWeather$: Observable<CurrentWeather>;
 
   loadWeatherData(suggestion: AutocompleteSuggestion | null): void {
     if (!suggestion) return;

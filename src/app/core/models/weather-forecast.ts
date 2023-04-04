@@ -1,3 +1,5 @@
+import { Coord, Weather } from "./shared";
+
 export interface WeatherForecast {
   city: City;
   cod: string;
@@ -13,11 +15,6 @@ export interface City {
   country: string;
   population: number;
   timezone: number;
-}
-
-export interface Coord {
-  lon: number;
-  lat: number;
 }
 
 export interface WeatherDetail {
@@ -51,11 +48,4 @@ export interface Temp {
   night: number;
   eve: number;
   morn: number;
-}
-
-export interface Weather {
-  id: number;
-  main: string;
-  description: string;
-  icon: string;
 }

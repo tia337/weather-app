@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { AutocompleteSuggestion, WeatherForecast } from '@core/models';
+import { map, Observable } from 'rxjs';
+import { AutocompleteSuggestion, CurrentWeather, WeatherForecast } from '@core/models';
 import { environment } from '@environment';
 
 @Injectable({
@@ -9,13 +9,18 @@ import { environment } from '@environment';
 })
 export class WeatherService {
   private readonly apiUrl = environment.apiUrl;
+
   private readonly http = inject(HttpClient);
 
   autocomplete(cityName: string, limit = 5): Observable<AutocompleteSuggestion[]> {
     return this.http.get<AutocompleteSuggestion[]>(`${this.apiUrl}/geo/1.0/direct?q=${cityName}&limit=${limit}`);
   }
 
-  getForecast(lat: number, lon: number): Observable<WeatherForecast>{
-    return this.http.get<WeatherForecast>(`${this.apiUrl}/data/2.5/onecall?lat=${lat}&lon=${lon}`);
+  getForecast(lat: number, lon: number, daysCount = 6): Observable<WeatherForecast>{
+    return this.http.get<WeatherForecast>(`${this.apiUrl}/data/2.5/forecast/daily?lat=${lat}&lon=${lon}&cnt=${daysCount}`);
+  }
+
+  getCurrentWeather(lat: number, lon: number): Observable<CurrentWeather> {
+    return this.http.get<CurrentWeather>(`${this.apiUrl}/data/2.5/weather?lat=${lat}&lon=${lon}`);
   }
 }

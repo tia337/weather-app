@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { AutocompleteSuggestion, CurrentWeather, WeatherForecast } from '@core/models';
+import { AutocompleteSuggestion, WeatherForecast } from '@core/models';
 import { environment } from '@environment';
 
 @Injectable({
